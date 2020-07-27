@@ -17,9 +17,9 @@ int main()
             max1 = max(max1, A);
         }
         if ((sum - max1 - max1) >= -1)
-            cout << "YES";
+            cout << "Yes";
         else
-            cout << "NO";
+            cout << "No";
 
         cout << endl;
     }
