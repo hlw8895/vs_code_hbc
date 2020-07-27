@@ -1,0 +1,6 @@
+/.git
+/.vscode
+/cpp workspace.code-workspace
+/LeetCode
+/Number of Islands.cpp
+*.exe
