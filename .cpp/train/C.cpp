@@ -8,28 +8,22 @@ int main()
     while (1)
     {
         int num1 = 0, num2 = 0;
-        while (1)
+        string str;
+        cin >> str;
+        while (str!="+")
         {
-            string A;
-            cin >> A;
-            if (A != "+")
-                num1 = en_zh.at(A) + num1 * 10;
-            else
-                break;
+                num1 = en_zh[str] + num1 * 10;
+                cin >> str;
         }
-        while (1)
+        cin >> str;
+        while (str!="=")
         {
-            string A;
-            cin >> A;
-            if(A!="=")
-                num2 = en_zh.at(A) + num2 * 10;
-            else
-                break;
+                num2 = en_zh[str] + num2 * 10;
+                cin >> str;
         }
         if(num1==0&&num2==0)
             break;
-        cout << num1 + num2 << endl;
-       
+        cout << num1 + num2 << endl;      
     }
 
     return 0;
