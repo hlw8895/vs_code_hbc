@@ -6,14 +6,14 @@ int main()
 {
     int n,num,sum,res;
     cin >> n;
-  
 
-            for (int i = 0; i < n; i++)
-            {
-              
-                sum = sum < 0 ? 0 : sum;
-                res = max(res, sum+num[i]);
-            }
+    res = num[0];
+    for (int i = 0; i < n; i++)
+    {
+
+        sum = sum < 0 ? 0 : sum;
+        res = max(res, sum + num[i]);
+    }
        
         return 0;
 }
