@@ -1,8 +1,8 @@
 #include <iostream>
 using namespace std;
-bool isleap(int x)
+bool isleap(int year)
 {
-    if (x % 100 != 0 && x % 4 == 0 || x % 400 == 0)
+    if (year % 100 != 0 && year % 4 == 0 || year % 400 == 0)
         return true;
     else
         return false;
