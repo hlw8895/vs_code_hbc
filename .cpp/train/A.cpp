@@ -9,9 +9,9 @@ bool isleap(int year)
 }
 int main()
 {
-    int t;
-    cin >> t;
-    while (t--)
+    int CASE_CNT;
+    cin >> CASE_CNT;
+    while (CASE_CNT--)
     {
         int year, mon, day, sum = 0;
         char c;
@@ -26,7 +26,6 @@ int main()
             {
                 sum += isleap(i) ? 366 : 365;
             }
-
             cout << sum;
         }
         cout << endl;
