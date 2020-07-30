@@ -16,6 +16,6 @@ int main()
     array<int, 20> arr = {};
     for (int i = 0; i < m;i++)
         cin >> arr[i];
-    
+  
         return 0;
 }
