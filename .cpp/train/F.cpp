@@ -1,5 +1,6 @@
 #include <iostream>
 #include <algorithm>
+#include<limits>
 #include <array>
 using namespace std;
 
@@ -13,7 +14,7 @@ static auto speedup = []() {
 int main()
 {
     int n = 1, head, foot, max_first;
-    array<int, 10000> nums = {};
+    array<int, 10001> nums = {};
     while (true)
     {
         cin >> n;
@@ -23,13 +24,14 @@ int main()
         for (int i = 0; i < n; i++)
             cin >> nums[i];
         head = nums[0], max_first = nums[0];
-        int res = INT_MIN, sum = 0;
+        int res = numeric_limits<int>::min(), sum = 0;
         for (int i = 0; i < n; i++)
         {
             sum += nums[i];
             if (sum < 0)
             {
                 sum = max(sum, 0);
+                if(i!=n-1)
                 max_first = nums[i + 1];
             }
             else if (sum > res)
