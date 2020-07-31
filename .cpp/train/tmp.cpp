@@ -12,29 +12,33 @@
 // 02
 // 03
 // ...
-
-
 #include <iostream>
 #include <algorithm>
+#include <vector>
 #include <limits>
-#include <array>
 using namespace std;
-
-void f(int num)
+vector<int> nums;
+int N;
+void dfs(int n, string s = {})
 {
-  if(num>=0)
+  if (n == N)
   {
-    cout << num<<" ";
-    f(--num);
+    cout << s << endl;
+    return;
   }
-
+  for (int i = 0; i <= nums[n]; i++)
+    dfs(n + 1, s + char(i + '0'));
 }
 int main()
 {
-  array<int, 10000> arr = {};
-  int n;
-  int n1 = 2, n2 = 3;
-  cout << f(n1) + f(n2) * 10;
+  int temp;
+  cin >> N;
+  for (int i = 0; i < N; i++)
+  {
+    cin >> temp;
+    nums.push_back(temp);
+  }
 
+  dfs(0);
   return 0;
 }

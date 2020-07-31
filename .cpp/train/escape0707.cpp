@@ -6,11 +6,13 @@
 using namespace std;
 
 #define endl '\n'
+
 static auto speedup = []() {
   ios::sync_with_stdio(false);
   cin.tie(nullptr);
   return nullptr;
 }();
+
 static int N;
 static vector<int> A;
 
@@ -34,5 +36,4 @@ int main()
   cin >> N;
   copy(istream_iterator<int>(cin), istream_iterator<int>(), back_inserter(A));
   dfs(0);
-  return 0;
 }
