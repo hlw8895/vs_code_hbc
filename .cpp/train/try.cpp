@@ -6,15 +6,16 @@ using namespace std;
 int count = 0;
 int total;
 int n, m;
-array<int, 21> coin = {};
-array<int, 999999> temp = {};
+array<int, 20> coin = {};
+array<int, 50001> solution = {};
+static constexpr int MAXINT = numeric_limits<int>::max();
 
 int dfs(int total)
 {
-    if (temp[total] != -1)
-        return temp[total];
+    if (solution[total] != -1)
+        return solution[total];
 
-    int minimal = numeric_limits<int>::max();
+    int minimal = MAXINT;
     for (int i = 0; i < m; i++)
     {
         int current_coin = coin[i];
@@ -22,8 +23,8 @@ int dfs(int total)
         {
             continue;
         }
-        temp[total - current_coin] = dfs(total - current_coin);
-        minimal = min(minimal, temp[total - current_coin]);
+        solution[total - current_coin] = dfs(total - current_coin);
+        minimal = min(minimal, solution[total - current_coin]);
     }
     if (minimal == numeric_limits<int>::max())
     {
@@ -31,19 +32,26 @@ int dfs(int total)
     }
     else
     {
-
         return minimal + 1;
     }
 }
 
 int main()
 {
-    temp.fill(-1);
-    temp[0] = 0;
+    solution.fill(MAXINT);
+    solution[0] = 0;
     cin >> total >> m;
     for (int i = 0; i < m; i++)
     {
         cin >> coin[i];
     }
-    cout << dfs(total) << endl;
+    for (int current = 1; current <= total; current++)
+        for (int i = 0; i < m; i++)
+        {
+            if (coin[i] <= current && solution[current - coin[i]] != MAXINT)
+            {
+                solution[current] = min(solution[current], solution[current - coin[i]] + 1);
+            }
+        }
+    cout << solution[total] << endl;
 }

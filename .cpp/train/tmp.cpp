@@ -31,12 +31,12 @@ void dfs(int n, string s = {})
 }
 int main()
 {
-  int temp;
+  int solution;
   cin >> N;
   for (int i = 0; i < N; i++)
   {
-    cin >> temp;
-    nums.push_back(temp);
+    cin >> solution;
+    nums.push_back(solution);
   }
 
   dfs(0);
