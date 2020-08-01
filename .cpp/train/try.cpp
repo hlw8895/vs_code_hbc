@@ -4,28 +4,35 @@ int count = 0;
 int total;
 int n, m;
 array<int, 21> coin = {};
-
-// 现在自己试一下这个程序的正确性，例子和提交都可以试，看你
-// 复杂度是多少？每次函数调用都会用栈空间的，你就当作每个函数都会开一个局部变量吧。
-// 递归几层就占用了多少空间
-// 不对，那是时间复杂度的算法，你算空间复杂度的时候，这一层的i++之前，你的下一层函数已经返回了，所以不会横向占用更多空间，只是跟深度有关。你实在是应该自己写对一个递归函数，然后自己调试一下感受一下。
-// 就把这个题写对就行
-// 复杂度以后再说吧，自己仔细想想，画画图想想。
-// 我没看到你的终端
-
-// 自己找出来这个问题
+static array<int, 999999> temp = {};
 int dfs(int total)
 {
     if (total == 0)
         return 0;
-
     int minimal = numeric_limits<int>::max();
     for (int i = 0; i < m; i++)
     {
         int current_coin = coin[i];
-        minimal = min(minimal, dfs(total - current_coin));
+        if (current_coin > total)
+        {
+            continue;
+        }
+        minimal = min(minimal, temp(total - current_coin));
     }
-    return minimal + 1;
+    // 行了，挺晚了，我就不等你接着想了，我建议这么改皮一下。
+    // 你这里判断一下minimal是不是INT_MAX，如果是的话继续返回INT_MAX就行了，不是的话就返回minimal+1，更好理解，你用if这么写吧
+    if (minimal == numeric_limits<int>::max())
+    {
+        return numeric_limits<int>::max();
+    }
+    else
+    {
+        return minimal + 1;
+    }
+    // 你可以画个图想想我们这个6 2 2 3的样例都走了几个dfs函数，然后你画个图，看看他们怎么从一个dfs走到另一个dfs的。
+    //你把这个决策-状态树画出来。你就能很好地发现其中的重复求解部分了。
+    //你们老师在讲最基础的递推和递归和动态规划的时候可能拿斐波那契数列举过例子，为什么求解斐波那契数列递推比递归时间复杂度低，你今晚好好想想
+    //想通了你就会背包问题了。你也会动态规划了。
 }
 int main()
 {
@@ -34,7 +41,7 @@ int main()
     {
         cin >> coin[i];
     }
-    cout << dfs(total) << endl;  // 不要忘了
+    cout << dfs(total) << endl;
 }
 
 static int find_min(const vector<int> &arr)
@@ -49,5 +56,3 @@ static int find_min(const vector<int> &arr)
     }
     return min_number;
 }
-
-// 现在你来说一下吧，从头说一下。find_min就不用管了
